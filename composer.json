@@ -1,0 +1,27 @@
+{
+    "name": "marqant-lab/marqant-pay-voyager",
+    "description": "Voyager provider for marqant-lab/marqant-pay package.",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmytro Sydorenko",
+            "email": "dmytro@du.digital"
+        }
+    ],
+    "require": {
+        "tcg/voyager": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marqant\\MarqantPayVoyager\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Marqant\\MarqantPayVoyager\\MarqantPayVoyagerServiceProvider"
+            ]
+        }
+    }
+}
