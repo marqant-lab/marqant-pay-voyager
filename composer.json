@@ -14,7 +14,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Marqant\\MarqantPayVoyager\\": "src/"
+            "Marqant\\MarqantPayVoyager\\": "src/",
+            "Marqant\\MarqantPayVoyager\\Database\\Seeds\\": "database/seeds/"
         }
     },
     "extra": {
