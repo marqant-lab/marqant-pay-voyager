@@ -5,7 +5,7 @@ namespace Marqant\MarqantPayVoyager;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class MarqantPayVojagerServiceProvider
+ * Class MarqantPayVoyagerServiceProvider
  *
  * @package Marqant\MarqantPayVoyageroyager
  */
