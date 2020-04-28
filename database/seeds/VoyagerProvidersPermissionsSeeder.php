@@ -1,6 +1,6 @@
 <?php
 
-namespace Marqant\MarqantPayVoyager\Database\Seeds;
+namespace Marqant\MarqantPayVoyager\Seeds;
 
 use TCG\Voyager\Models\Role;
 use Illuminate\Database\Seeder;

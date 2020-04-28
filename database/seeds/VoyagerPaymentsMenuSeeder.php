@@ -1,6 +1,6 @@
 <?php
 
-namespace Marqant\MarqantPayVoyager\Database\Seeds;
+namespace Marqant\MarqantPayVoyager\Seeds;
 
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\MenuItem;
