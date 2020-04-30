@@ -1,0 +1,68 @@
+<?php
+
+namespace Marqant\MarqantPayVoyager\Seeds;
+
+use TCG\Voyager\Models\Role;
+use Illuminate\Database\Seeder;
+use TCG\Voyager\Models\Permission;
+use Illuminate\Support\Facades\DB;
+
+/**
+ * Class VoyagerPaymentsPermissionsSeeder
+ *
+ * @package Marqant\MarqantPayVoyager\Seeds
+ */
+class {{CLASS_NAME}} extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     *
+     * @throws \Throwable
+     */
+    public function run()
+    {
+        DB::transaction(function () {
+            $browse = Permission::updateOrCreate([
+                'key'        => 'browse_{{TABLE_NAME}}',
+                'table_name' => '{{TABLE_NAME}}',
+            ]);
+
+            $read = Permission::updateOrCreate([
+                'key'        => 'read_{{TABLE_NAME}}',
+                'table_name' => '{{TABLE_NAME}}',
+            ]);
+
+            $edit = Permission::updateOrCreate([
+                'key'        => 'edit_{{TABLE_NAME}}',
+                'table_name' => '{{TABLE_NAME}}',
+            ]);
+
+            $add = Permission::updateOrCreate([
+                'key'        => 'add_{{TABLE_NAME}}',
+                'table_name' => '{{TABLE_NAME}}',
+            ]);
+
+            $delete = Permission::updateOrCreate([
+                'key'        => 'delete_{{TABLE_NAME}}',
+                'table_name' => '{{TABLE_NAME}}',
+            ]);
+
+            // get admin role
+            $role = Role::where('name', 'admin')
+                ->first();
+            /** @var Role $role attach permissions to admin */
+            $role->permissions()
+                ->syncWithoutDetaching($browse->id);
+            $role->permissions()
+                ->syncWithoutDetaching($read->id);
+            $role->permissions()
+                ->syncWithoutDetaching($edit->id);
+            $role->permissions()
+                ->syncWithoutDetaching($add->id);
+            $role->permissions()
+                ->syncWithoutDetaching($delete->id);
+        });
+    }
+}
