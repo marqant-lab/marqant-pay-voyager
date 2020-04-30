@@ -36,7 +36,7 @@ class VoyagerProvidersDataTypesSeeder extends Seeder
                 'description' => '',
                 'generate_permissions' => 1,
                 'server_side' => 0,
-                'details' => null,
+                'details' => [],
             ]);
         });
     }

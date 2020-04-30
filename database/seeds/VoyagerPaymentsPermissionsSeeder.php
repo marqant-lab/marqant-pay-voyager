@@ -54,15 +54,15 @@ class VoyagerPaymentsPermissionsSeeder extends Seeder
                 ->first();
             /** @var Role $role attach permissions to admin */
             $role->permissions()
-                ->attach($browse);
+                ->syncWithoutDetaching($browse->id);
             $role->permissions()
-                ->attach($read);
+                ->syncWithoutDetaching($read->id);
             $role->permissions()
-                ->attach($edit);
+                ->syncWithoutDetaching($edit->id);
             $role->permissions()
-                ->attach($add);
+                ->syncWithoutDetaching($add->id);
             $role->permissions()
-                ->attach($delete);
+                ->syncWithoutDetaching($delete->id);
         });
     }
 }
