@@ -5,20 +5,20 @@
 
 Require the package through composer.
 ```
-compsoer require marqant-lab/marqant-pay-voyager
+$ composer require marqant-lab/marqant-pay-voyager
 ```
 
 Install Voyager (if you don't install it yet):
 ```
-php artisan voyager:install
+$ php artisan voyager:install
 ```
 Assign any existing user as admin:
 ```
-php artisan voyager:admin your@email.com
+$ php artisan voyager:admin your@email.com
 ```
 Or create a new one:
 ```
-php artisan voyager:admin admin@admin.com --create
+$ php artisan voyager:admin admin@admin.com --create
 ```
 enter name and password
 
@@ -28,26 +28,28 @@ to check it installation successfully.
 Create seeders for billable model, for example App\\User
 
 ```
-php artisan marqant-pay-voyager:seeders-billable App\\User
+$ php artisan marqant-pay-voyager:seeders-billable App\\User
 ```
 you will get this message:
 ```
   don't forget run '$ composer dump-autoload' before execute seeders.  
-  execute seeder run: '$ php artisan db:seed --class="Marqant\MarqantPayVoyager\Seeds\VoyagerUsersDataTypesSeeder"'  
-  execute seeder run: '$ php artisan db:seed --class="Marqant\MarqantPayVoyager\Seeds\VoyagerUsersDataRowsSeeder"'  
-  execute seeder run: '$ php artisan db:seed --class="Marqant\MarqantPayVoyager\Seeds\VoyagerUsersMenuSeeder"'  
-  execute seeder run: '$ php artisan db:seed --class="Marqant\MarqantPayVoyager\Seeds\VoyagerUsersPermissionsSeeder"'  
+  execute seeder run: '$ php artisan db:seed --class="VoyagerUsersDataTypesSeeder"'  
+  execute seeder run: '$ php artisan db:seed --class="VoyagerUsersDataRowsSeeder"'  
+  execute seeder run: '$ php artisan db:seed --class="VoyagerUsersMenuSeeder"'  
+  execute seeder run: '$ php artisan db:seed --class="VoyagerUsersPermissionsSeeder"'  
   run '$ composer dump-autoload' and execute seeders. Done! 👍  
 ```
 
 you can execute them separately or add row to your DatabaseSeeder.php  
-and just run (don't forget run '`$ composer dump-autoload`' before execute seeders):
+and just run:
 ```
+$ composer dump-autoload
 $ php artisan db:seed
 ```
 DatabaseSeeder.php
 ```php
-use Marqant\MarqantPayVoyager\Seeds\VoyagerDatabaseSeeder;
+
+use Marqant\MarqantPayVoyager\Seeds\VoyagerDatabaseSeeder as VoyagerDatabaseSeederMP;
 ...
 class DatabaseSeeder extends Seeder
 {
@@ -60,10 +62,13 @@ class DatabaseSeeder extends Seeder
     {
         ...
         $this->call(VoyagerDatabaseSeeder::class);
+        $this->call(VoyagerDatabaseSeederMP::class);
     }
 }
 ```
-and vendor/marqant-lab/marqant-pay-voyager/database/seeds/VoyagerDatabaseSeeder.php
+find created seeders at `database/seeds/`  
+and add to your database/seeds/VoyagerDatabaseSeeder.php  
+example:
 ```php
 class VoyagerDatabaseSeeder extends Seeder
 {
@@ -79,4 +84,8 @@ class VoyagerDatabaseSeeder extends Seeder
     }
 }
 ```
+now you ready execute seders  
+you can also add all created seeders to your project git repository  
+  
+  
 not completed, to be continue...
