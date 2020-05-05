@@ -41,5 +41,15 @@ class VoyagerDatabaseSeeder extends Seeder
         $this->call(VoyagerProvidersDataRowsSeeder::class);
         $this->call(VoyagerProvidersMenuSeeder::class);
         $this->call(VoyagerProvidersPermissionsSeeder::class);
+        // Plans
+        $this->call(VoyagerPlansDataTypesSeeder::class);
+        $this->call(VoyagerPlansDataRowsSeeder::class);
+        $this->call(VoyagerPlansMenuSeeder::class);
+        $this->call(VoyagerPlansPermissionsSeeder::class);
+        // Subscriptions
+        $this->call(VoyagerSubscriptionsDataTypesSeeder::class);
+        $this->call(VoyagerSubscriptionsDataRowsSeeder::class);
+        $this->call(VoyagerSubscriptionsMenuSeeder::class);
+        $this->call(VoyagerSubscriptionsPermissionsSeeder::class);
     }
 }
