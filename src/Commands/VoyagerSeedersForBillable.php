@@ -130,7 +130,6 @@ class VoyagerSeedersForBillable extends Command
 
         $stub = $this->getStub($stub_path);
 
-        $namespace = "Marqant\\MarqantPayVoyager\\Seeds\\";
         $class_name = $this->getSeederClassName($table, 'DataTypes');
 
         $this->replaceClassName($stub, $class_name);
@@ -145,7 +144,7 @@ class VoyagerSeedersForBillable extends Command
 
         $this->saveSeeder($stub, $class_name);
 
-        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$namespace}{$class_name}\"'");
+        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
     }
 
     /**
@@ -159,7 +158,6 @@ class VoyagerSeedersForBillable extends Command
 
         $stub = $this->getStub($stub_path);
 
-        $namespace = "Marqant\\MarqantPayVoyager\\Seeds\\";
         $class_name = $this->getSeederClassName($table, 'DataRows');
 
         $this->replaceClassName($stub, $class_name);
@@ -168,7 +166,7 @@ class VoyagerSeedersForBillable extends Command
 
         $this->saveSeeder($stub, $class_name);
 
-        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$namespace}{$class_name}\"'");
+        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
     }
 
     /**
@@ -182,7 +180,6 @@ class VoyagerSeedersForBillable extends Command
 
         $stub = $this->getStub($stub_path);
 
-        $namespace = "Marqant\\MarqantPayVoyager\\Seeds\\";
         $class_name = $this->getSeederClassName($table, 'Menu');
 
         $this->replaceClassName($stub, $class_name);
@@ -193,7 +190,7 @@ class VoyagerSeedersForBillable extends Command
 
         $this->saveSeeder($stub, $class_name);
 
-        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$namespace}{$class_name}\"'");
+        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
     }
 
     /**
@@ -207,7 +204,6 @@ class VoyagerSeedersForBillable extends Command
 
         $stub = $this->getStub($stub_path);
 
-        $namespace = "Marqant\\MarqantPayVoyager\\Seeds\\";
         $class_name = $this->getSeederClassName($table, 'Permissions');
 
         $this->replaceClassName($stub, $class_name);
@@ -216,7 +212,7 @@ class VoyagerSeedersForBillable extends Command
 
         $this->saveSeeder($stub, $class_name);
 
-        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$namespace}{$class_name}\"'");
+        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
     }
 
     /**
@@ -322,7 +318,7 @@ class VoyagerSeedersForBillable extends Command
     {
         $file_name = $this->getSeederFileName($class_name);
 
-        $path = base_path('vendor/marqant-lab/marqant-pay-voyager/database/seeds/');
+        $path = base_path('database/seeds/');
 
         $this->preventDuplicates($path, $class_name);
 
