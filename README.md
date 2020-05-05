@@ -5,7 +5,7 @@
 
 Require the package through composer.
 ```
-compsoer require marqant-lab/marqant-pay-voyager
+composer require marqant-lab/marqant-pay-voyager
 ```
 
 Install Voyager (if you don't install it yet):
