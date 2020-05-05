@@ -1,0 +1,41 @@
+<?php
+
+namespace Marqant\MarqantPayVoyager\Seeds;
+
+use Illuminate\Database\Seeder;
+use TCG\Voyager\Models\MenuItem;
+use Illuminate\Support\Facades\DB;
+
+/**
+ * Class VoyagerProvidersMenuSeeder
+ *
+ * @package Marqant\MarqantPayVoyager\Seeds
+ */
+class {{CLASS_NAME}} extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     *
+     * @throws \Throwable
+     */
+    public function run()
+    {
+        DB::transaction(function () {
+            MenuItem::updateOrCreate([
+                'menu_id' => 1,
+                'title' => 'Billable {{U_TABLE_NAME}}',
+            ], [
+                'url' => '',
+                'target' => '_self',
+                'icon_class' => 'voyager-credit-cards',
+                'color' => null,
+                'parent_id' => null,
+                'order' => 7,
+                'route' => 'voyager.{{TABLE_NAME}}.index',
+                'parameters' => null,
+            ]);
+        });
+    }
+}

@@ -1,0 +1,40 @@
+<?php
+
+namespace Marqant\MarqantPayVoyager\Seeds;
+
+use Illuminate\Database\Seeder;
+use TCG\Voyager\Models\DataType;
+use Illuminate\Support\Facades\DB;
+
+/**
+ * Class VoyagerPaymentsDataTypesSeeder
+ *
+ * @package Marqant\MarqantPayVoyager\Seeds
+ */
+class {{CLASS_NAME}} extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     *
+     * @throws \Throwable
+     */
+    public function run()
+    {
+        DB::transaction(function () {
+            DataType::updateOrCreate([
+                'slug' => '{{TABLE_NAME}}',
+                'name' => '{{TABLE_NAME}}',
+            ], [
+                'display_name_singular' => '{{S_TABLE_NAME}}',
+                'display_name_plural' => '{{U_TABLE_NAME}}',
+                'icon' => 'voyager-credit-cards',
+                'model_name' => "{{BILLABLE_MODEL}}",
+                'description' => '',
+                'generate_permissions' => 1,
+                'server_side' => 0,
+            ]);
+        });
+    }
+}

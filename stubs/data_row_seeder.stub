@@ -1,0 +1,195 @@
+<?php
+
+namespace Marqant\MarqantPayVoyager\Seeds;
+
+use Illuminate\Database\Seeder;
+use TCG\Voyager\Models\DataRow;
+use TCG\Voyager\Models\DataType;
+use Illuminate\Support\Facades\DB;
+
+class {{CLASS_NAME}} extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     *
+     * @throws \Throwable
+     */
+    public function run()
+    {
+        DB::transaction(function () {
+            /** @var DataType $dataType get the data type */
+            $dataType = DataType::where('slug', '{{TABLE_NAME}}')->firstOrFail();
+
+            // field id
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'id',
+            ], [
+                'type' => 'hidden',
+                'display_name' => 'ID',
+                'required' => true,
+                'browse' => false,
+                'read' => false,
+                'edit' => false,
+                'add' => false,
+                'delete' => false,
+                'order' => 1,
+            ]);
+
+            // field name
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'name',
+            ], [
+                'type' => 'text',
+                'display_name' => 'Name',
+                'required' => true,
+                'browse' => true,
+                'read' => true,
+                'edit' => true,
+                'add' => true,
+                'delete' => true,
+                'order' => 2,
+            ]);
+
+            /*// field slug
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'slug',
+            ], [
+                'type' => 'text',
+                'display_name' => 'Slug',
+                'required' => true,
+                'browse' => false,
+                'read' => true,
+                'edit' => true,
+                'add' => true,
+                'delete' => true,
+                'order' => 3,
+            ]);*/
+
+            // field marqant_pay_provider
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'marqant_pay_provider',
+            ], [
+                'type' => 'text',
+                'display_name' => 'Pay provider',
+                'required' => true,
+                'browse' => true,
+                'read' => true,
+                'edit' => true,
+                'add' => true,
+                'delete' => true,
+                'order' => 101,
+            ]);
+
+            // field marqant_pay_method
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'marqant_pay_method',
+            ], [
+                'type' => 'text',
+                'display_name' => 'Pay method',
+                'required' => true,
+                'browse' => true,
+                'read' => true,
+                'edit' => true,
+                'add' => true,
+                'delete' => true,
+                'order' => 102,
+            ]);
+
+            // field marqant_pay_card_brand
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'marqant_pay_card_brand',
+            ], [
+                'type' => 'text',
+                'display_name' => 'Card brand',
+                'required' => true,
+                'browse' => true,
+                'read' => true,
+                'edit' => true,
+                'add' => true,
+                'delete' => true,
+                'order' => 103,
+            ]);
+
+            // field marqant_pay_card_last_four
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'marqant_pay_card_last_four',
+            ], [
+                'type' => 'text',
+                'display_name' => 'Card last four digits',
+                'required' => true,
+                'browse' => true,
+                'read' => true,
+                'edit' => true,
+                'add' => true,
+                'delete' => true,
+                'order' => 104,
+            ]);
+
+            // field marqant_pay_trial_ends_at
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'marqant_pay_trial_ends_at',
+            ], [
+                'type' => 'timestamp',
+                'display_name' => 'Trial ends at',
+                'required' => true,
+                'browse' => true,
+                'read' => true,
+                'edit' => true,
+                'add' => true,
+                'delete' => true,
+                'details' => [
+                    'format' => '%Y-%m-%d',
+                ],
+                'order' => 105,
+            ]);
+
+            // field created_at
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'created_at',
+            ], [
+                'type' => 'timestamp',
+                'display_name' => 'Created at',
+                'required' => true,
+                'browse' => false,
+                'read' => true,
+                'edit' => false,
+                'add' => false,
+                'delete' => true,
+                'details' => [
+                    'format' => '%Y-%m-%d %H:%M',
+                ],
+                'order' => 21,
+            ]);
+
+            // field updated_at
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'updated_at',
+            ], [
+                'type' => 'timestamp',
+                'display_name' => 'Updated at',
+                'required' => true,
+                'browse' => false,
+                'read' => true,
+                'edit' => false,
+                'add' => false,
+                'delete' => true,
+                'details' => [
+                    'format' => '%Y-%m-%d %H:%M',
+                ],
+                'order' => 22,
+            ]);
+        });
+    }
+}
