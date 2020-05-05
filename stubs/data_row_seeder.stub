@@ -1,7 +1,5 @@
 <?php
 
-namespace Marqant\MarqantPayVoyager\Seeds;
-
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\DataRow;
 use TCG\Voyager\Models\DataType;
@@ -151,6 +149,22 @@ class {{CLASS_NAME}} extends Seeder
                     'format' => '%Y-%m-%d',
                 ],
                 'order' => 105,
+            ]);
+
+            // field email
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'email',
+            ], [
+                'type' => 'text',
+                'display_name' => 'Email',
+                'required' => true,
+                'browse' => true,
+                'read' => true,
+                'edit' => true,
+                'add' => true,
+                'delete' => true,
+                'order' => 106,
             ]);
 
             // field created_at
