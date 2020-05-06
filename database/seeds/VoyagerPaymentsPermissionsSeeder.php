@@ -57,12 +57,12 @@ class VoyagerPaymentsPermissionsSeeder extends Seeder
                 ->syncWithoutDetaching($browse->id);
             $role->permissions()
                 ->syncWithoutDetaching($read->id);
-            $role->permissions()
+            /*$role->permissions()
                 ->syncWithoutDetaching($edit->id);
             $role->permissions()
                 ->syncWithoutDetaching($add->id);
             $role->permissions()
-                ->syncWithoutDetaching($delete->id);
+                ->syncWithoutDetaching($delete->id);*/
         });
     }
 }

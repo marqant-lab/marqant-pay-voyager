@@ -75,7 +75,7 @@ class {{CLASS_NAME}} extends Seeder
             ], [
                 'type' => 'text',
                 'display_name' => 'Pay provider',
-                'required' => true,
+                'required' => false,
                 'browse' => true,
                 'read' => true,
                 'edit' => true,
@@ -91,7 +91,7 @@ class {{CLASS_NAME}} extends Seeder
             ], [
                 'type' => 'text',
                 'display_name' => 'Pay method',
-                'required' => true,
+                'required' => false,
                 'browse' => true,
                 'read' => true,
                 'edit' => true,
@@ -107,7 +107,7 @@ class {{CLASS_NAME}} extends Seeder
             ], [
                 'type' => 'text',
                 'display_name' => 'Card brand',
-                'required' => true,
+                'required' => false,
                 'browse' => true,
                 'read' => true,
                 'edit' => true,
@@ -123,7 +123,7 @@ class {{CLASS_NAME}} extends Seeder
             ], [
                 'type' => 'text',
                 'display_name' => 'Card last four digits',
-                'required' => true,
+                'required' => false,
                 'browse' => true,
                 'read' => true,
                 'edit' => true,
@@ -139,7 +139,7 @@ class {{CLASS_NAME}} extends Seeder
             ], [
                 'type' => 'timestamp',
                 'display_name' => 'Trial ends at',
-                'required' => true,
+                'required' => false,
                 'browse' => true,
                 'read' => true,
                 'edit' => true,
@@ -193,7 +193,7 @@ class {{CLASS_NAME}} extends Seeder
             ], [
                 'type' => 'timestamp',
                 'display_name' => 'Updated at',
-                'required' => true,
+                'required' => false,
                 'browse' => false,
                 'read' => true,
                 'edit' => false,
