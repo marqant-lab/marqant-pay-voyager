@@ -23,14 +23,6 @@ class VoyagerDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(DataTypesTableSeeder::class);
-        $this->call(DataRowsTableSeeder::class);
-        $this->call(MenusTableSeeder::class);
-        $this->call(MenuItemsTableSeeder::class);
-        $this->call(RolesTableSeeder::class);
-        $this->call(PermissionsTableSeeder::class);
-        $this->call(PermissionRoleTableSeeder::class);
-        $this->call(SettingsTableSeeder::class);
         // Payments
         $this->call(VoyagerPaymentsDataTypesSeeder::class);
         $this->call(VoyagerPaymentsDataRowsSeeder::class);
