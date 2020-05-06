@@ -101,7 +101,7 @@ class VoyagerPaymentsDataRowsSeeder extends Seeder
                 'field' => 'status',
             ], [
                 'type' => 'text',
-                'display_name' => 'status',
+                'display_name' => 'Status',
                 'required' => true,
                 'browse' => true,
                 'read' => true,

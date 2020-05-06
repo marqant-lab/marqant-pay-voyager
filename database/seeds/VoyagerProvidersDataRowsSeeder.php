@@ -20,7 +20,7 @@ class VoyagerProvidersDataRowsSeeder extends Seeder
     {
         DB::transaction(function () {
             /** @var DataType $dataType get the data type */
-            $dataType = DataType::where('slug', 'payments')->firstOrFail();
+            $dataType = DataType::where('slug', 'providers')->firstOrFail();
 
             // field id
             DataRow::updateOrCreate([
@@ -63,7 +63,7 @@ class VoyagerProvidersDataRowsSeeder extends Seeder
             ], [
                 'type' => 'text',
                 'display_name' => 'Slug',
-                'required' => true,
+                'required' => false,
                 'browse' => false,
                 'read' => true,
                 'edit' => true,
