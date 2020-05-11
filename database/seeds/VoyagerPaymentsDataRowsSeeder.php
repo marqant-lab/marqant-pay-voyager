@@ -112,6 +112,23 @@ class VoyagerPaymentsDataRowsSeeder extends Seeder
                 'order' => 5,
             ]);
 
+            // field invoice
+            DataRow::updateOrCreate([
+                'data_type_id' => $dataType->id,
+                'field' => 'invoice',
+            ], [
+                'type' => 'file',
+                'display_name' => 'Invoice',
+                'required' => false,
+                'browse' => true,
+                'read' => true,
+                'edit' => false,
+                'add' => false,
+                'delete' => false,
+                'details' => [],
+                'order' => 5,
+            ]);
+
             // field created_at
             DataRow::updateOrCreate([
                 'data_type_id' => $dataType->id,
