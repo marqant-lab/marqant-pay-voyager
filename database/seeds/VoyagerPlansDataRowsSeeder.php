@@ -135,7 +135,7 @@ class VoyagerPlansDataRowsSeeder extends Seeder
                 'data_type_id' => $dataType->id,
                 'field' => 'active',
             ], [
-                'type' => 'number',
+                'type' => 'checkbox',
                 'display_name' => 'Active',
                 'required' => true,
                 'browse' => false,
