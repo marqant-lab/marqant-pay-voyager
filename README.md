@@ -25,10 +25,12 @@ enter name and password
 Go to your.awesome.site.com/admin  
 to check it installation successfully.
 
-Create seeders for billable model, for example App\\User
+Create seeders for billable model(s),  
+given at 'marqant-pay.billables' config,  
+for example App\\User
 
 ```
-$ php artisan marqant-pay-voyager:seeders-billable App\\User
+$ php artisan marqant-pay-voyager:seeders-billable
 ```
 you will get this message:
 ```
