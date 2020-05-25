@@ -21,15 +21,14 @@ class VoyagerSeedersForBillable extends Command
      *
      * @var string
      */
-    protected $signature = 'marqant-pay-voyager:seeders-billable
-                                  {billable : The billable model to create the seeders for.}';
+    protected $signature = 'marqant-pay-voyager:seeders-billable';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create 4 Voyager seeders for a given billable model.';
+    protected $description = 'Create 4 Voyager seeders for billable model(s) from marqant-pay.billables config.';
 
     /**
      * Create a new command instance.
@@ -45,15 +44,23 @@ class VoyagerSeedersForBillable extends Command
      *
      * Execute the console command.
      *
-     * @throws \ReflectionException
+     * @return mixed
      */
     public function handle()
     {
         $this->info('  don\'t forget run \'$ composer dump-autoload\' before execute seeders.');
 
-        $Billable = $this->getBillableModel();
+        // get all billable models from config
+        $billables = collect(config('marqant-pay.billables'));
 
-        $this->makeSeedersForBillable($Billable);
+        $billables->each(function ($model_name) {
+            $Billable = $this->getBillableModel($model_name);
+            if (is_null($Billable)) {
+                return;
+            }
+
+            $this->makeSeedersForBillable($Billable);
+        });
 
         $this->info('  run \'$ composer dump-autoload\' and execute seeders. Done! 👍');
     }
@@ -61,13 +68,18 @@ class VoyagerSeedersForBillable extends Command
     /**
      * Get billable argument from input and resolve it to a model with the Billable trait attached.
      *
-     * @return Model
+     * @param string $model_name
+     *
+     * @return Model|null
      */
-    private function getBillableModel()
+    private function getBillableModel(string $model_name)
     {
-        $Billable = app($this->argument('billable'));
+        $Billable = app($model_name);
 
-        $this->checkIfModelIsBillable($Billable);
+        $can_continue = $this->checkIfModelIsBillable($Billable);
+        if ($can_continue === false) {
+            return null;
+        }
 
         return $Billable;
     }
@@ -77,15 +89,20 @@ class VoyagerSeedersForBillable extends Command
      * If it doesn't, print out an error message and exit the command.
      *
      * @param Model $Billable
+     *
+     * @return bool
      */
-    private function checkIfModelIsBillable(Model $Billable): void
+    private function checkIfModelIsBillable(Model $Billable): bool
     {
         $traits = class_uses($Billable);
 
         if (!collect($traits)->contains(Billable::class)) {
-            $this->error('The given model is not a Billable.');
-            exit(1);
+            $this->alert('The given model '. get_class($Billable) . ' is not a Billable.');
+
+            return false;
         }
+
+        return true;
     }
 
     /**
@@ -132,6 +149,16 @@ class VoyagerSeedersForBillable extends Command
 
         $class_name = $this->getSeederClassName($table, 'DataTypes');
 
+        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
+
+        $path = base_path('database/seeds/');
+
+        // no need to create seeder if it is already exists
+        $can_continue = $this->preventDuplicates($path, $class_name);
+        if ($can_continue === false) {
+            return;
+        }
+
         $this->replaceClassName($stub, $class_name);
 
         $this->replaceTableName($stub, $table);
@@ -143,8 +170,6 @@ class VoyagerSeedersForBillable extends Command
         $this->replaceBillableClassName($stub, $Billable);
 
         $this->saveSeeder($stub, $class_name);
-
-        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
     }
 
     /**
@@ -160,13 +185,20 @@ class VoyagerSeedersForBillable extends Command
 
         $class_name = $this->getSeederClassName($table, 'DataRows');
 
+        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
+
+        $path = base_path('database/seeds/');
+
+        $can_continue = $this->preventDuplicates($path, $class_name);
+        if ($can_continue === false) {
+            return;
+        }
+
         $this->replaceClassName($stub, $class_name);
 
         $this->replaceTableName($stub, $table);
 
         $this->saveSeeder($stub, $class_name);
-
-        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
     }
 
     /**
@@ -182,6 +214,15 @@ class VoyagerSeedersForBillable extends Command
 
         $class_name = $this->getSeederClassName($table, 'Menu');
 
+        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
+
+        $path = base_path('database/seeds/');
+
+        $can_continue = $this->preventDuplicates($path, $class_name);
+        if ($can_continue === false) {
+            return;
+        }
+
         $this->replaceClassName($stub, $class_name);
 
         $this->replaceTableName($stub, $table);
@@ -189,8 +230,6 @@ class VoyagerSeedersForBillable extends Command
         $this->replacePluralName($stub, $table);
 
         $this->saveSeeder($stub, $class_name);
-
-        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
     }
 
     /**
@@ -206,13 +245,20 @@ class VoyagerSeedersForBillable extends Command
 
         $class_name = $this->getSeederClassName($table, 'Permissions');
 
+        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
+
+        $path = base_path('database/seeds/');
+
+        $can_continue = $this->preventDuplicates($path, $class_name);
+        if ($can_continue === false) {
+            return;
+        }
+
         $this->replaceClassName($stub, $class_name);
 
         $this->replaceTableName($stub, $table);
 
         $this->saveSeeder($stub, $class_name);
-
-        $this->line("  execute seeder run: '$ php artisan db:seed --class=\"{$class_name}\"'");
     }
 
     /**
@@ -320,7 +366,10 @@ class VoyagerSeedersForBillable extends Command
 
         $path = base_path('database/seeds/');
 
-        $this->preventDuplicates($path, $class_name);
+        $can_continue = $this->preventDuplicates($path, $class_name);
+        if ($can_continue === false) {
+            return;
+        }
 
         File::put($path . '/' . $file_name, $stub);
     }
@@ -350,10 +399,14 @@ class VoyagerSeedersForBillable extends Command
     }
 
     /**
+     * Check if migration already exists
+     *
      * @param string $path
      * @param string $class_name
+     *
+     * @return bool - true if can continue, false if find migration
      */
-    private function preventDuplicates(string $path, string $class_name)
+    private function preventDuplicates(string $path, string $class_name): bool
     {
         $file = $this->getSeederFileName($class_name);
 
@@ -363,8 +416,12 @@ class VoyagerSeedersForBillable extends Command
             });
 
         if ($files->contains($file)) {
-            $this->error("Seeder for Voyager BREAD {$class_name} already exists.");
+            $this->alert("Seeder for Voyager BREAD '{$class_name}' already exists.");
+
+            return false;
         }
+
+        return true;
     }
 
 }
