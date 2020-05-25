@@ -43,7 +43,7 @@ class VoyagerSubscriptionsDataTypesSeeder extends Seeder
                 'controller' => '',
                 'description' => '',
                 'generate_permissions' => 1,
-                'server_side' => 0,
+                'server_side' => 1,
             ]);
         });
     }
