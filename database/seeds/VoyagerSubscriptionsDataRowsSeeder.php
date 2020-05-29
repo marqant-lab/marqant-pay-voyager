@@ -114,9 +114,9 @@ class VoyagerSubscriptionsDataRowsSeeder extends Seeder
                 'required' => false,
                 'browse' => true,
                 'read' => true,
-                'edit' => true,
-                'add' => true,
-                'delete' => true,
+                'edit' => false,
+                'add' => false,
+                'delete' => false,
                 'details' => [],
                 'order' => 13,
             ]);
@@ -131,9 +131,9 @@ class VoyagerSubscriptionsDataRowsSeeder extends Seeder
                 'required' => false,
                 'browse' => true,
                 'read' => true,
-                'edit' => true,
-                'add' => true,
-                'delete' => true,
+                'edit' => false,
+                'add' => false,
+                'delete' => false,
                 'details' => [],
                 'order' => 13,
             ]);
@@ -154,7 +154,7 @@ class VoyagerSubscriptionsDataRowsSeeder extends Seeder
                 'details' => [
                     'format' => '%Y-%m-%d %H:%M',
                 ],
-                'order' => 4,
+                'order' => 14,
             ]);
 
             // field updated_at
@@ -173,7 +173,7 @@ class VoyagerSubscriptionsDataRowsSeeder extends Seeder
                 'details' => [
                     'format' => '%Y-%m-%d %H:%M',
                 ],
-                'order' => 5,
+                'order' => 15,
             ]);
         });
     }
