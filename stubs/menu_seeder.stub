@@ -23,7 +23,7 @@ class {{CLASS_NAME}} extends Seeder
         DB::transaction(function () {
             MenuItem::updateOrCreate([
                 'menu_id' => 1,
-                'title' => 'Billable {{U_TABLE_NAME}}',
+                'title' => '{{U_TABLE_NAME}}',
             ], [
                 'url' => '',
                 'target' => '_self',

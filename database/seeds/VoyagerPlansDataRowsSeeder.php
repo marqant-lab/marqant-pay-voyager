@@ -118,7 +118,7 @@ class VoyagerPlansDataRowsSeeder extends Seeder
                 'data_type_id' => $dataType->id,
                 'field' => 'type',
             ], [
-                'type' => 'text',
+                'type' => 'select_dropdown',
                 'display_name' => 'Type',
                 'required' => true,
                 'browse' => true,
@@ -126,7 +126,12 @@ class VoyagerPlansDataRowsSeeder extends Seeder
                 'edit' => true,
                 'add' => true,
                 'delete' => true,
-                'details' => [],
+                'details' => [
+                    "options" => [
+                        "monthly" => "Monthly",
+                        "yearly" => "Yearly",
+                    ]
+                ],
                 'order' => 6,
             ]);
 
