@@ -2,6 +2,7 @@
 
 namespace Marqant\MarqantPayVoyager\Seeds;
 
+use TCG\Voyager\Models\Menu;
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\MenuItem;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,10 @@ class VoyagerSubscriptionsMenuSeeder extends Seeder
     public function run()
     {
         DB::transaction(function () {
+            /** @var Menu $Menu */
+            $Menu = Menu::where('name', 'admin')
+                ->firstOrFail();
+
             // get subscriptions model
             $subscriptions_model = config('marqant-pay-subscriptions.subscription_model');
             if (empty($subscriptions_model)) return;
@@ -32,7 +37,7 @@ class VoyagerSubscriptionsMenuSeeder extends Seeder
             $reflect = new \ReflectionClass($subscriptions_model);
 
             MenuItem::updateOrCreate([
-                'menu_id' => 1,
+                'menu_id' => $Menu->id,
                 'title' => $reflect->getShortName() . 's',
             ], [
                 'url' => '',
