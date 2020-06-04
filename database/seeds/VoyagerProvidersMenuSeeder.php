@@ -2,6 +2,7 @@
 
 namespace Marqant\MarqantPayVoyager\Seeds;
 
+use TCG\Voyager\Models\Menu;
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\MenuItem;
 use Illuminate\Support\Facades\DB;
@@ -23,8 +24,12 @@ class VoyagerProvidersMenuSeeder extends Seeder
     public function run()
     {
         DB::transaction(function () {
+            /** @var Menu $Menu */
+            $Menu = Menu::where('name', 'admin')
+                ->firstOrFail();
+
             MenuItem::updateOrCreate([
-                'menu_id' => 1,
+                'menu_id' => $Menu->id,
                 'title' => 'Providers',
             ], [
                 'url' => '',
